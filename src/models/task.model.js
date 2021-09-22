@@ -18,6 +18,9 @@ const taskSchema = mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'Project',
     },
+    status: {
+      type: String,
+    },
   },
 
   {

@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const { objectId } = require('./custom.validation');
 
-const getTasks = {
+const getStatuses = {
   query: Joi.object().keys({
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
@@ -10,24 +10,22 @@ const getTasks = {
   }),
 };
 
-const getTask = {
+const getStatus = {
   params: Joi.object().keys({
     id: Joi.string().required().custom(objectId),
   }),
 };
 
-const createTask = {
+const createStatus = {
   body: Joi.object().keys({
     projectId: Joi.string().required().custom(objectId),
     name: Joi.string().required(),
-    description: Joi.string().required(),
-    status: Joi.string().required(),
-    timeSpent: Joi.number().integer(),
+    order: Joi.number().integer(),
   }),
 };
 
 module.exports = {
-  getTasks,
-  getTask,
-  createTask,
+  getStatus,
+  getStatuses,
+  createStatus,
 };

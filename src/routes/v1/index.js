@@ -3,6 +3,7 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const projectRoute = require('./project.route');
+const statusRoute = require('./status.route');
 const taskRoute = require('./task.route');
 const config = require('../../config/config');
 
@@ -28,6 +29,10 @@ const defaultRoutes = [
   {
     path: '/docs',
     route: docsRoute,
+  },
+  {
+    path: '/status',
+    route: statusRoute,
   },
 ];
 

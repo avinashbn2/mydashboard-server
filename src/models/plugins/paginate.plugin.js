@@ -38,18 +38,25 @@ const paginate = (schema) => {
 
     const countPromise = this.countDocuments(filter).exec();
 
-    let docsPromise = this.find(filter).populate(options.populate).sort(sort).skip(skip).limit(limit);
+    const tempDocsPromise = this.find(filter);
+    let docsPromise = tempDocsPromise.sort(sort).skip(skip).limit(limit);
 
     if (options.populate) {
-      options.populate.split(',').forEach((populateOption) => {
-        docsPromise = docsPromise.populate(
-          populateOption
-            .split('.')
-            .reverse()
-            .reduce((a, b) => ({ path: b, populate: a }))
-        );
+      let populatedPromise = tempDocsPromise;
+      options.populate.forEach((op) => {
+        populatedPromise = populatedPromise.populate(op);
       });
+
+      docsPromise = populatedPromise.sort(sort).skip(skip).limit(limit);
     }
+    // options.populate.split(',').forEach((populateOption) => {
+    //   docsPromise = docsPromise.populate(
+    //     populateOption
+    //       .split('.')
+    //       .reverse()
+    //       .reduce((a, b) => ({ path: b, populate: a }))
+    //   );
+    // });
 
     docsPromise = docsPromise.exec();
 

@@ -23,7 +23,7 @@ const createProject = async (projectBody, user) => {
  */
 
 const queryProjects = async (filter, options) => {
-  return Project.paginate(filter, { ...options, populate: 'tasks' });
+  return Project.paginate(filter, { ...options, populate: ['tasks', 'statuses'] });
 };
 
 /**
@@ -31,7 +31,7 @@ const queryProjects = async (filter, options) => {
  * @param {id} number - Project id
  */
 const getProjectById = async (id) => {
-  const project = await Project.findById(id).populate('author').populate('tasks').exec();
+  const project = await Project.findById(id).populate('author').populate('tasks').populate('statuses').exec();
   return project;
 };
 module.exports = {
