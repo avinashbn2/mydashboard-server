@@ -13,7 +13,13 @@ const getTask = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send(task);
 });
 
+const updateTask = catchAsync(async (req, res) => {
+  const task = await taskService.updateTask(req.params.id, req.body);
+  res.status(httpStatus.OK).send(task);
+});
+
 module.exports = {
   getTask,
   createTask,
+  updateTask,
 };

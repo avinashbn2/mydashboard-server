@@ -27,7 +27,7 @@ const projectSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
-    statuses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Status' }],
+    statuses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Status', default: [] }],
   },
 
   {

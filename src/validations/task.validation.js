@@ -23,6 +23,21 @@ const createTask = {
     description: Joi.string().required(),
     status: Joi.string().required(),
     timeSpent: Joi.number().integer(),
+    order: Joi.number().integer(),
+  }),
+};
+
+const updateTask = {
+  params: Joi.object().keys({
+    id: Joi.string().required().custom(objectId),
+  }),
+
+  body: Joi.object().keys({
+    name: Joi.string(),
+    description: Joi.string(),
+    status: Joi.string(),
+    timeSpent: Joi.number().integer(),
+    order: Joi.number().integer(),
   }),
 };
 
@@ -30,4 +45,5 @@ module.exports = {
   getTasks,
   getTask,
   createTask,
+  updateTask,
 };

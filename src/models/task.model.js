@@ -21,6 +21,9 @@ const taskSchema = mongoose.Schema(
     status: {
       type: String,
     },
+    order: {
+      type: Number,
+    },
   },
 
   {
